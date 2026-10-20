@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d12">
+  <meta name="description" content="Projeto Steve — um companheiro virtual de código aberto invocado através de código, encantamentos e imaginação.">
+  <title>Projeto Steve — O Portal Está Aberto</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Projeto Steve — início">
+      <span class="brand-cube" aria-hidden="true">S</span>
+      <span>PROJETO <b>STEVE</b></span>
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="#lenda">A lenda</a>
+      <a href="#grimorio">Grimório</a>
+      <a href="#horizontes">Horizontes</a>
+    </nav>
+    <a class="header-link" href="https://github.com/Steve-Project-Open-Source" target="_blank" rel="noreferrer">Ver no GitHub <span>↗</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="rune rune-one" aria-hidden="true">ᚠ</div>
+      <div class="rune rune-two" aria-hidden="true">✧</div>
+      <div class="rune rune-three" aria-hidden="true">⌘</div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> TRANSMISSÃO ENTRE MUNDOS DETECTADA</p>
+        <h1>O portal está<br> <span>aberto.</span></h1>
+        <p class="hero-lead">Por eras, Steve caminhou entre blocos. Agora, antigos encantamentos escritos em código tentam trazê-lo para o nosso mundo.</p>
+        <div class="hero-actions">
+          <button class="button button-primary" id="summonButton"><span>✧</span> Invocar Steve</button>
+          <a class="button button-ghost" href="#lenda">Conhecer a lenda <span>↓</span></a>
+        </div>
+        <p class="microcopy">UM RITUAL FEITO DE CÓDIGO. UMA LENDA SEM LIMITES.</p>
+      </div>
+
+      <div class="portal-scene" aria-label="Representação visual de um portal mágico">
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="portal-halo"></div>
+        <div class="portal">
+          <div class="portal-inner"></div>
+          <div class="portal-core"></div>
+          <span class="portal-rune rune-a">ᚱ</span>
+          <span class="portal-rune rune-b">✦</span>
+          <span class="portal-rune rune-c">⌬</span>
+          <span class="portal-rune rune-d">ᛟ</span>
+        </div>
+        <div class="pixel-person" id="steve" aria-label="Avatar pixelado inspirado em Steve">
+          <div class="pixel-head"><span class="pixel-hair"></span><span class="pixel-face"></span></div>
+          <div class="pixel-body"></div>
+          <div class="pixel-arm left"></div><div class="pixel-arm right"></div>
+          <div class="pixel-leg left"></div><div class="pixel-leg right"></div>
+          <div class="pixel-shadow"></div>
+        </div>
+        <div class="portal-caption"><span class="caption-line"></span><span>ENTIDADE EM OBSERVAÇÃO</span><span class="caption-line"></span></div>
+        <div class="coordinates">X: 064&nbsp;&nbsp; Y: ???&nbsp;&nbsp; Z: REALIDADE</div>
+      </div>
+      <div class="hero-bottom">
+        <span>PROTOCOLO DE INVocAÇÃO // 001</span>
+        <span>FEITO PELA COMUNIDADE, PARA O INEXPLICÁVEL</span>
+      </div>
+    </section>
+
+    <section class="summon-console" id="console" aria-live="polite">
+      <div class="console-top"><span class="console-light"></span><span>GRIMÓRIO // TERMINAL DE INVocAÇÃO</span><span class="console-version">v0.1.0</span></div>
+      <div class="console-content">
+        <div class="console-mark">✧</div>
+        <div>
+          <p class="console-label">STATUS DO RITUAL</p>
+          <p class="console-message" id="consoleMessage">Aguardando alguém corajoso o bastante para pronunciar o encantamento.</p>
+        </div>
+        <span class="console-state" id="consoleState">EM ESPERA</span>
+      </div>
+      <div class="console-progress"><span id="progressBar"></span></div>
+    </section>
+
+    <section class="section lore-section" id="lenda">
+      <div class="section-heading">
+        <p class="eyebrow">CAPÍTULO I // A LENDA</p>
+        <h2>Ele zerou um mundo.<br><span>E se recusou a parar.</span></h2>
+      </div>
+      <div class="lore-layout">
+        <div class="lore-symbol" aria-hidden="true">
+          <div class="sigil-ring"></div><div class="sigil-diamond"></div><div class="sigil-center">S</div>
+          <span class="sigil-label top">ORIGEM</span><span class="sigil-label bottom">TRAVESSIA</span>
+        </div>
+        <div class="lore-text">
+          <p>Steve construiu fortalezas, enfrentou dragões e sobreviveu a noites intermináveis. Mas até uma lenda pode desejar novos horizontes.</p>
+          <p>Então os humanos encontraram uma forma diferente de magia: <strong>código-fonte.</strong> Transformaram funções em runas, scripts em encantamentos e repositórios em páginas de um grimório coletivo.</p>
+          <p>O Projeto Steve é o começo dessa travessia: uma iniciativa aberta para explorar como um companheiro virtual pode crescer com a criatividade da comunidade.</p>
+          <blockquote>“A magia é fictícia. O código é real. O próximo mundo é uma possibilidade.”</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grimoire-section" id="grimorio">
+      <div class="section-heading centered">
+        <p class="eyebrow">CAPÍTULO II // O GRIMÓRIO</p>
+        <h2>Toda magia começa<br><span>com uma primeira runa.</span></h2>
+        <p class="section-intro">O GitHub é o grimório. Cada contribuição acrescenta um símbolo ao ritual. Cada ideia pode abrir um portal que ainda não existe.</p>
+      </div>
+      <div class="rune-cards">
+        <article class="rune-card">
+          <span class="card-index">RUNA 01</span><span class="card-icon">⌘</span>
+          <h3>Escreva o encantamento</h3>
+          <p>HTML, CSS e JavaScript formam o primeiro círculo mágico desta experiência.</p>
+          <span class="card-foot">CÓDIGO COMO MAGIA</span>
+        </article>
+        <article class="rune-card featured">
+          <span class="card-index">RUNA 02</span><span class="card-icon">✧</span>
+          <h3>Contribua com o ritual</h3>
+          <p>Explore o projeto, sugira melhorias e ajude a transformar a lenda em software.</p>
+          <a class="card-foot card-link" href="https://github.com/steve-ai" target="_blank" rel="noreferrer">ABRIR O GRIMÓRIO ↗</a>
+        </article>
+        <article class="rune-card">
+          <span class="card-index">RUNA 03</span><span class="card-icon">◇</span>
+          <h3>Imagine outro mundo</h3>
+          <p>Uma ideia estranha hoje pode ser a próxima experiência construída pela comunidade.</p>
+          <span class="card-foot">SEM LIMITE PARA A IMAGINAÇÃO</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section horizons-section" id="horizontes">
+      <div class="section-heading">
+        <p class="eyebrow">CAPÍTULO III // OS HORIZONTES</p>
+        <h2>Sete portais.<br><span>Infinitas possibilidades.</span></h2>
+        <p class="section-intro">Estes são caminhos para explorar, não funcionalidades já entregues. O futuro do projeto será construído passo a passo.</p>
+      </div>
+      <div class="horizon-list">
+        <article><span class="horizon-number">01</span><span class="horizon-icon">▣</span><div><h3>O familiar digital</h3><p>Um Steve que possa habitar o desktop e acompanhar o cotidiano.</p></div><span class="horizon-status">VISÃO</span></article>
+        <article><span class="horizon-number">02</span><span class="horizon-icon">✺</span><div><h3>A centelha da inteligência</h3><p>Explorar integrações com modelos de IA e novas formas de interação.</p></div><span class="horizon-status">VISÃO</span></article>
+        <article><span class="horizon-number">03</span><span class="horizon-icon">⌘</span><div><h3>O grimório expansível</h3><p>Uma base aberta para extensões, habilidades e ferramentas criadas pela comunidade.</p></div><span class="horizon-status">VISÃO</span></article>
+        <article><span class="horizon-number">04</span><span class="horizon-icon">◉</span><div><h3>A convergência dos mundos</h3><p>Investigar conexões com jogos, aplicativos e ambientes digitais.</p></div><span class="horizon-status">VISÃO</span></article>
+        <article><span class="horizon-number">05</span><span class="horizon-icon">▦</span><div><h3>O golem de ferro</h3><p>Possíveis experimentos com robôs e dispositivos físicos.</p></div><span class="horizon-status">VISÃO</span></article>
+        <article><span class="horizon-number">06</span><span class="horizon-icon">⌁</span><div><h3>O olho nos céus</h3><p>Explorar, no futuro, sensores, drones e sistemas conectados.</p></div><span class="horizon-status">VISÃO</span></article>
+        <article><span class="horizon-number">07</span><span class="horizon-icon">✧</span><div><h3>Além do portal</h3><p>Realidade virtual, experiências imersivas e tecnologias que ainda nem imaginamos.</p></div><span class="horizon-status">VISÃO</span></article>
+      </div>
+    </section>
+
+    <section class="final-portal">
+      <div class="final-sigil" aria-hidden="true"><span>✧</span></div>
+      <p class="eyebrow">O ÚLTIMO ENCANTAMENTO</p>
+      <h2>Steve ouviu o chamado.<br><span>Agora é a nossa vez.</span></h2>
+      <p>Abra o grimório. Escreva sua runa. Ajude a construir o caminho entre mundos.</p>
+      <a class="button button-primary" href="https://github.com/Steve-Project-Open-Source" target="_blank" rel="noreferrer">Entrar no projeto <span>↗</span></a>
+      <p class="final-note">Nenhum bloco foi danificado durante a compilação deste encantamento.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#inicio"><span class="brand-cube">S</span><span>PROJETO <b>STEVE</b></span></a>
+    <p>Feito com código, curiosidade e uma quantidade suspeita de magia.</p>
+    <span class="footer-version">INVOCAÇÃO v0.1.0</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
