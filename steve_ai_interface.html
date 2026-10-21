@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>STEVE AI - Interface Oficial Responsiva</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'app-bg': '#040711',
+            'window-bg': '#0a101d',
+            'sidebar-bg': '#070c17',
+            'active-blue': '#0d6efd',
+            'hover-blue': '#1a75ff',
+            'chat-bubble-ai': '#1e2638',
+            'chat-bubble-user': '#0d6efd',
+            'input-bg': '#0f172a',
+            'border-subtle': '#182235',
+            'online-green': '#00e676'
+          },
+          fontFamily: {
+            sans: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(10, 16, 29, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+
+    /* Glows & Shadows */
+    .window-frame {
+      box-shadow: 0 0 50px rgba(13, 110, 253, 0.15), 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(30, 58, 138, 0.35);
+    }
+
+    .online-glow {
+      box-shadow: 0 0 8px #00e676, 0 0 16px #00e676;
+    }
+
+    .active-nav-glow {
+      box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+    }
+
+    /* Steve Pixel Face Frame */
+    .steve-avatar-frame {
+      background: linear-gradient(135deg, #2a3854, #131a29);
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
+    }
+
+    /* Chat styling */
+    .bubble-ai {
+      background-color: #1a2336;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .bubble-user {
+      background-color: #0d6efd;
+      box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+    }
+
+    /* Custom Input Bar Outline */
+    .chat-input-wrapper {
+      background: #0d1527;
+      border: 1px solid #1e2d4a;
+    }
+    .chat-input-wrapper:focus-within {
+      border-color: #0d6efd;
+      box-shadow: 0 0 12px rgba(13, 110, 253, 0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-app-bg text-slate-100 font-sans h-full w-full flex items-center justify-center sm:p-4 md:p-6 select-none overflow-hidden relative">
+
+  <!-- BACKGROUND DECORATIVE GLOWS -->
+  <div class="fixed -top-40 -left-40 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="fixed -bottom-40 -right-40 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- MAIN CONTAINER (100% no mobile, responsivo e adaptável em desktops/tablets) -->
+  <div class="relative w-full h-full sm:h-[92vh] sm:max-h-[820px] max-w-6xl flex">
+    
+    <!-- APP WINDOW FRAME -->
+    <div class="w-full h-full bg-window-bg sm:rounded-2xl window-frame flex flex-col overflow-hidden relative z-10">
+      
+      <!-- ================= 1. WINDOW TITLE BAR ================= -->
+      <div class="h-14 bg-[#080d1a] border-b border-border-subtle/80 px-4 sm:px-5 flex items-center justify-between shrink-0">
+        
+        <!-- Left Title & Mobile Menu Toggle -->
+        <div class="flex items-center gap-3">
+          <!-- Mobile Drawer Toggle Button -->
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-slate-300 hover:text-white p-1.5 focus:outline-none">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
+
+          <!-- Steve Head Avatar Icon -->
+          <div class="w-8 h-8 rounded-lg bg-[#a3724c] border border-amber-600/50 flex flex-col justify-between p-0.5 overflow-hidden shadow-md shrink-0">
+            <div class="w-full h-2.5 bg-[#422612]"></div> <!-- Hair -->
+            <div class="flex justify-between items-center px-0.5 my-0.5">
+              <div class="w-2 h-1.5 bg-white flex items-center justify-end"><div class="w-1 h-1.5 bg-blue-600"></div></div>
+              <div class="w-2 h-1.5 bg-white flex items-center justify-start"><div class="w-1 h-1.5 bg-blue-600"></div></div>
+            </div>
+            <div class="w-3 h-1 bg-[#52331c] mx-auto mb-0.5"></div> <!-- Beard -->
+          </div>
+
+          <div>
+            <h1 class="text-sm sm:text-base font-bold tracking-wide text-white font-sans flex items-center gap-2">
+              STEVE AI
+            </h1>
+          </div>
+        </div>
+
+        <!-- Right Window Controls & Status -->
+        <div class="flex items-center gap-4 sm:gap-6">
+          <!-- Online Indicator -->
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-online-green online-glow"></span>
+            <span class="text-xs font-semibold text-emerald-400">Online</span>
+          </div>
+
+          <!-- Window Buttons (- □ X) -->
+          <div class="hidden sm:flex items-center gap-3 text-slate-400 text-sm ml-2">
+            <button class="hover:text-white transition-colors"><i class="fa-solid fa-minus"></i></button>
+            <button class="hover:text-white transition-colors text-xs"><i class="fa-regular fa-square"></i></button>
+            <button class="hover:text-rose-400 transition-colors text-base"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= WINDOW CONTENT BODY ================= -->
+      <div class="flex-1 flex overflow-hidden relative">
+        
+        <!-- BACKDROP FOR MOBILE MENU -->
+        <div id="mobile-backdrop" onclick="toggleMobileMenu(false)" class="fixed inset-0 bg-black/60 z-20 md:hidden hidden transition-opacity"></div>
+
+        <!-- ================= 2. SIDEBAR NAVIGATION (DESKTOP & MOBILE DRAWER) ================= -->
+        <aside id="sidebar-drawer" class="absolute md:relative z-30 md:z-auto top-0 left-0 h-full w-64 md:w-56 bg-sidebar-bg border-r border-border-subtle/80 p-3.5 flex flex-col justify-between shrink-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+          
+          <nav class="space-y-1.5">
+            <!-- Conversar (Active) -->
+            <button onclick="switchTab('chat')" id="nav-chat" class="nav-item w-full flex items-center gap-3.5 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-200 bg-active-blue text-white active-nav-glow">
+              <i class="fa-regular fa-comment-dots text-lg"></i>
+              <span>Conversar</span>
+            </button>
+
+            <!-- Tarefas -->
+            <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-item w-full flex items-center gap-3.5 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40">
+              <i class="fa-regular fa-square-check text-lg"></i>
+              <span>Tarefas</span>
+            </button>
+
+            <!-- Estudos -->
+            <button onclick="switchTab('study')" id="nav-study" class="nav-item w-full flex items-center gap-3.5 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40">
+              <i class="fa-solid fa-graduation-cap text-lg"></i>
+              <span>Estudos</span>
+            </button>
+
+            <!-- Jogos -->
+            <button onclick="switchTab('games')" id="nav-games" class="nav-item w-full flex items-center gap-3.5 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40">
+              <i class="fa-solid fa-gamepad text-lg"></i>
+              <span>Jogos</span>
+            </button>
+
+            <!-- Configurações -->
+            <button onclick="switchTab('settings')" id="nav-settings" class="nav-item w-full flex items-center gap-3.5 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40">
+              <i class="fa-solid fa-gear text-lg"></i>
+              <span>Configurações</span>
+            </button>
+          </nav>
+
+          <!-- Sidebar Footer Branding -->
+          <div class="px-2 py-3 text-center border-t border-slate-800/60">
+            <span class="text-[10px] font-mono tracking-wider text-slate-500 uppercase">PROJETO STEVE 3D</span>
+          </div>
+        </aside>
+
+        <!-- ================= MAIN VIEW PANELS ================= -->
+        <main class="flex-1 bg-[#060a14] relative flex flex-col min-w-0 overflow-hidden">
+          
+          <!-- TAB 1: CONVERSAR (CHAT AREA) -->
+          <div id="tab-chat" class="tab-content flex-1 flex flex-col h-full overflow-hidden">
+            
+            <!-- Message Stream Area -->
+            <div id="chat-stream" class="flex-1 p-3.5 sm:p-5 md:p-6 overflow-y-auto space-y-4 sm:space-y-5">
+              
+              <!-- Message 1: Steve (Left) -->
+              <div class="flex items-start gap-2.5 sm:gap-3.5 max-w-[90%] sm:max-w-[82%]">
+                <!-- Avatar Frame -->
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl steve-avatar-frame border border-slate-700/60 p-0.5 sm:p-1 flex items-center justify-center shrink-0 shadow-lg">
+                  <div class="w-full h-full bg-[#a3724c] rounded-md sm:rounded-lg overflow-hidden relative">
+                    <div class="absolute top-0 inset-x-0 h-2 sm:h-2.5 bg-[#422612]"></div>
+                    <div class="absolute top-2.5 sm:top-3 left-0.5 sm:left-1 w-1.5 sm:w-2 h-1 sm:h-1.5 bg-white"><div class="w-0.5 sm:w-1 h-1 sm:h-1.5 bg-blue-600"></div></div>
+                    <div class="absolute top-2.5 sm:top-3 right-0.5 sm:right-1 w-1.5 sm:w-2 h-1 sm:h-1.5 bg-white"><div class="w-0.5 sm:w-1 h-1 sm:h-1.5 bg-blue-600"></div></div>
+                    <div class="absolute bottom-0.5 sm:bottom-1 inset-x-1.5 sm:inset-x-2 h-0.5 sm:h-1 bg-[#52331c]"></div>
+                  </div>
+                </div>
+                <!-- Bubble -->
+                <div class="bubble-ai p-3 sm:p-4 rounded-2xl rounded-tl-sm text-slate-200 text-xs sm:text-sm leading-relaxed shadow-sm">
+                  <p>Oi! Eu sou o Steve!</p>
+                  <p>Seu companheiro virtual.</p>
+                  <p>O que vamos fazer hoje?</p>
+                </div>
+              </div>
+
+              <!-- Message 2: User (Right) -->
+              <div class="flex justify-end max-w-[90%] sm:max-w-[82%] ml-auto">
+                <div class="bubble-user p-3 sm:p-3.5 px-3.5 sm:px-4 rounded-2xl rounded-tr-sm text-white text-xs sm:text-sm leading-relaxed">
+                  Me conta uma curiosidade!
+                </div>
+              </div>
+
+              <!-- Message 3: Steve (Left) -->
+              <div class="flex items-start gap-2.5 sm:gap-3.5 max-w-[90%] sm:max-w-[82%]">
+                <!-- Avatar Frame -->
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl steve-avatar-frame border border-slate-700/60 p-0.5 sm:p-1 flex items-center justify-center shrink-0 shadow-lg">
+                  <div class="w-full h-full bg-[#a3724c] rounded-md sm:rounded-lg overflow-hidden relative">
+                    <div class="absolute top-0 inset-x-0 h-2 sm:h-2.5 bg-[#422612]"></div>
+                    <div class="absolute top-2.5 sm:top-3 left-0.5 sm:left-1 w-1.5 sm:w-2 h-1 sm:h-1.5 bg-white"><div class="w-0.5 sm:w-1 h-1 sm:h-1.5 bg-blue-600"></div></div>
+                    <div class="absolute top-2.5 sm:top-3 right-0.5 sm:right-1 w-1.5 sm:w-2 h-1 sm:h-1.5 bg-white"><div class="w-0.5 sm:w-1 h-1 sm:h-1.5 bg-blue-600"></div></div>
+                    <div class="absolute bottom-0.5 sm:bottom-1 inset-x-1.5 sm:inset-x-2 h-0.5 sm:h-1 bg-[#52331c]"></div>
+                  </div>
+                </div>
+                <!-- Bubble -->
+                <div class="bubble-ai p-3 sm:p-4 rounded-2xl rounded-tl-sm text-slate-200 text-xs sm:text-sm leading-relaxed shadow-sm">
+                  Você sabia que os creepers não são agressivos? Eles só explodem quando se sentem ameaçados... como eu quando você fica sem café! 😀
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Bottom Chat Input Field -->
+            <div class="p-3 sm:p-4 bg-window-bg/90 border-t border-border-subtle/80 shrink-0">
+              <div class="chat-input-wrapper rounded-xl sm:rounded-2xl px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-2 sm:gap-3 transition-all">
+                <input 
+                  type="text" 
+                  id="chat-input" 
+                  placeholder="Digite sua mensagem..." 
+                  class="w-full bg-transparent text-xs sm:text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none py-1 sm:py-1.5"
+                  onkeydown="if(event.key === 'Enter') handleSend()"
+                />
+                <button 
+                  onclick="handleSend()" 
+                  class="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-active-blue hover:bg-hover-blue text-white flex items-center justify-center transition-all shrink-0 active:scale-95 shadow-md"
+                  title="Enviar mensagem"
+                >
+                  <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- TAB 2: TAREFAS -->
+          <div id="tab-tasks" class="tab-content flex-1 p-4 sm:p-6 overflow-y-auto hidden">
+            <h2 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <i class="fa-regular fa-square-check text-active-blue"></i> Tarefas do Steve
+            </h2>
+            <div class="space-y-3 max-w-lg">
+              <div class="p-3 sm:p-3.5 bg-slate-900/80 border border-slate-800 rounded-xl flex items-center gap-3 text-xs sm:text-sm text-slate-300">
+                <input type="checkbox" checked class="w-4 h-4 accent-active-blue rounded">
+                <span class="line-through text-slate-500">Ajudar a resolver problemas de código</span>
+              </div>
+              <div class="p-3 sm:p-3.5 bg-slate-900/80 border border-slate-800 rounded-xl flex items-center gap-3 text-xs sm:text-sm text-slate-300">
+                <input type="checkbox" checked class="w-4 h-4 accent-active-blue rounded">
+                <span class="line-through text-slate-500">Contar piadas sobre creepers</span>
+              </div>
+              <div class="p-3 sm:p-3.5 bg-slate-900/80 border border-slate-800 rounded-xl flex items-center gap-3 text-xs sm:text-sm text-slate-300">
+                <input type="checkbox" class="w-4 h-4 accent-active-blue rounded">
+                <span>Tomar um café bem forte ☕</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: ESTUDOS -->
+          <div id="tab-study" class="tab-content flex-1 p-4 sm:p-6 overflow-y-auto hidden">
+            <h2 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-amber-400"></i> Central de Estudos
+            </h2>
+            <p class="text-slate-400 text-xs sm:text-sm mb-4">Anotações e conceitos rápidos salvos pelo Steve.</p>
+            <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-xl font-mono text-xs text-slate-300 leading-relaxed">
+              // Anotação do dia:<br>
+              - Redstone = Lógica booleana pura.<br>
+              - Nunca minere diretamente para baixo!<br>
+              - Mantenha sempre um balde de água no inventário.
+            </div>
+          </div>
+
+          <!-- TAB 4: JOGOS -->
+          <div id="tab-games" class="tab-content flex-1 p-4 sm:p-6 flex flex-col items-center justify-center hidden">
+            <i class="fa-solid fa-gamepad text-4xl sm:text-5xl text-active-blue mb-3 animate-bounce"></i>
+            <h3 class="text-base sm:text-lg font-bold text-white mb-1 text-center">Minecraft Block Breaker</h3>
+            <p class="text-xs text-slate-400 mb-4 text-center">Clique para iniciar uma partida rápida!</p>
+            <button onclick="alert('Mini jogo carregado!')" class="bg-active-blue hover:bg-hover-blue text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-semibold text-xs shadow-lg transition-transform active:scale-95">
+              JOGAR AGORA
+            </button>
+          </div>
+
+          <!-- TAB 5: CONFIGURAÇÕES -->
+          <div id="tab-settings" class="tab-content flex-1 p-4 sm:p-6 overflow-y-auto hidden">
+            <h2 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-gear text-slate-400"></i> Configurações
+            </h2>
+            <div class="space-y-3 sm:space-y-4 max-w-md">
+              <div class="flex items-center justify-between p-3 sm:p-3.5 bg-slate-900/80 border border-slate-800 rounded-xl text-xs sm:text-sm">
+                <span class="text-slate-200">Efeitos de Áudio</span>
+                <input type="checkbox" checked class="w-4 h-4 accent-active-blue">
+              </div>
+              <div class="flex items-center justify-between p-3 sm:p-3.5 bg-slate-900/80 border border-slate-800 rounded-xl text-xs sm:text-sm">
+                <span class="text-slate-200">Respostas Humorísticas</span>
+                <input type="checkbox" checked class="w-4 h-4 accent-active-blue">
+              </div>
+            </div>
+          </div>
+
+        </main>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Mobile Drawer Toggle
+    function toggleMobileMenu(forceState) {
+      const drawer = document.getElementById('sidebar-drawer');
+      const backdrop = document.getElementById('mobile-backdrop');
+      
+      const isExpanded = drawer.classList.contains('translate-x-0');
+      const shouldExpand = forceState !== undefined ? forceState : !isExpanded;
+
+      if (shouldExpand) {
+        drawer.classList.remove('-translate-x-full');
+        drawer.classList.add('translate-x-0');
+        backdrop.classList.remove('hidden');
+      } else {
+        drawer.classList.add('-translate-x-full');
+        drawer.classList.remove('translate-x-0');
+        backdrop.classList.add('hidden');
+      }
+    }
+
+    // Tab switching functionality
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.classList.remove('bg-active-blue', 'text-white', 'active-nav-glow');
+        btn.classList.add('text-slate-400');
+      });
+
+      const selectedTab = document.getElementById(`tab-${tabId}`);
+      const selectedNav = document.getElementById(`nav-${tabId}`);
+
+      if (selectedTab) selectedTab.classList.remove('hidden');
+      if (selectedNav) {
+        selectedNav.classList.add('bg-active-blue', 'text-white', 'active-nav-glow');
+        selectedNav.classList.remove('text-slate-400');
+      }
+
+      // Close mobile drawer on item selection
+      if (window.innerWidth < 768) {
+        toggleMobileMenu(false);
+      }
+    }
+
+    // Dynamic messaging logic
+    const steveReplies = [
+      "Boa! Lembre-se: se encontrar diamantes, nunca minere pra baixo! 💎⛏️",
+      "Com certeza! Um bom café resolve até bug em código de Redstone! ☕",
+      "Interessante... Já tentou colocar três blocos de ferro e uma abóbora no topo? 🤖",
+      "Anotado! Vou guardar essa ideia no meu baú duplo de segredos! 📦",
+      "Se precisar de ajuda com tarefas ou código, é só falar!"
+    ];
+
+    function handleSend() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chatStream = document.getElementById('chat-stream');
+
+      // 1. User Bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = 'flex justify-end max-w-[90%] sm:max-w-[82%] ml-auto';
+      userBubble.innerHTML = `
+        <div class="bubble-user p-3 sm:p-3.5 px-3.5 sm:px-4 rounded-2xl rounded-tr-sm text-white text-xs sm:text-sm leading-relaxed">
+          ${escapeHtml(text)}
+        </div>
+      `;
+      chatStream.appendChild(userBubble);
+      input.value = '';
+      chatStream.scrollTop = chatStream.scrollHeight;
+
+      // 2. Simulated Steve Response
+      setTimeout(() => {
+        const replyText = steveReplies[Math.floor(Math.random() * steveReplies.length)];
+        const steveBubble = document.createElement('div');
+        steveBubble.className = 'flex items-start gap-2.5 sm:gap-3.5 max-w-[90%] sm:max-w-[82%]';
+        steveBubble.innerHTML = `
+          <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl steve-avatar-frame border border-slate-700/60 p-0.5 sm:p-1 flex items-center justify-center shrink-0 shadow-lg">
+            <div class="w-full h-full bg-[#a3724c] rounded-md sm:rounded-lg overflow-hidden relative">
+              <div class="absolute top-0 inset-x-0 h-2 sm:h-2.5 bg-[#422612]"></div>
+              <div class="absolute top-2.5 sm:top-3 left-0.5 sm:left-1 w-1.5 sm:w-2 h-1 sm:h-1.5 bg-white"><div class="w-0.5 sm:w-1 h-1 sm:h-1.5 bg-blue-600"></div></div>
+              <div class="absolute top-2.5 sm:top-3 right-0.5 sm:right-1 w-1.5 sm:w-2 h-1 sm:h-1.5 bg-white"><div class="w-0.5 sm:w-1 h-1 sm:h-1.5 bg-blue-600"></div></div>
+              <div class="absolute bottom-0.5 sm:bottom-1 inset-x-1.5 sm:inset-x-2 h-0.5 sm:h-1 bg-[#52331c]"></div>
+            </div>
+          </div>
+          <div class="bubble-ai p-3 sm:p-4 rounded-2xl rounded-tl-sm text-slate-200 text-xs sm:text-sm leading-relaxed shadow-sm">
+            ${replyText}
+          </div>
+        `;
+        chatStream.appendChild(steveBubble);
+        chatStream.scrollTop = chatStream.scrollHeight;
+      }, 600);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+  </script>
+</body>
+</html>
